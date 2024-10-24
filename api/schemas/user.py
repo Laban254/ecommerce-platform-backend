@@ -44,6 +44,7 @@ class UserCreate(BaseModel):
             strip_whitespace=True
         )
     ]
+    role: Optional[str] = "user"
 
     @model_validator(mode='before')
     @classmethod

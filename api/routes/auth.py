@@ -67,6 +67,56 @@ def register(background_tasks: BackgroundTasks, response: Response, user_schema:
 
 
 
+@auth.post("/register-admin", status_code=status.HTTP_201_CREATED, response_model=auth_response)
+def register_admin(background_tasks: BackgroundTasks, response: Response, user_schema: UserCreate, db: Session = Depends(get_db)):
+    '''Endpoint for an admin to register their account'''
+
+    # Set the role for admin
+    user_schema.role = "admin" 
+
+    # Create user account
+    user = user_service.create(db=db, schema=user_schema)
+
+    # Create access and refresh tokens
+    access_token = user_service.create_access_token(user_id=user.id, role=user.role)
+    refresh_token = user_service.create_refresh_token(user_id=user.id, role=user.role)
+
+    # Send email in the background
+    background_tasks.add_task(
+        send_email, 
+        recipient=user.email,
+        template_name='welcome_admin.html',
+        subject='Welcome Admin',
+        context={
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        }
+    )
+
+    response = auth_response(
+        status_code=201,
+        message='Admin created successfully',
+        access_token=access_token,
+        data={
+            'user': jsonable_encoder(
+                user,
+                exclude=['password', 'is_deleted', 'is_verified', 'updated_at']
+            )
+        }
+    )
+
+    # Add refresh token to cookies
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        expires=timedelta(days=60),
+        httponly=True,
+        secure=True,
+        samesite="none",
+    )
+
+    return response
+
 
 
 @auth.post("/login", status_code=status.HTTP_200_OK, response_model=auth_response)
