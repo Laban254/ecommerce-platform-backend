@@ -82,7 +82,6 @@ class UserData(BaseModel):
     is_active: bool
     is_deleted: bool
     is_verified: bool
-    is_superadmin: bool
     created_at: datetime
     updated_at: datetime
 
@@ -111,7 +110,6 @@ class AdminCreateUser(BaseModel):
     is_active: bool = False
     is_deleted: bool = False
     is_verified: bool = False
-    is_superadmin: bool = False
 
     model_config = ConfigDict(from_attributes=True)
 

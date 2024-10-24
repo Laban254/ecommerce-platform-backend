@@ -216,23 +216,33 @@ class UserService(Service):
 
         return pwd_context.verify(secret=password, hash=hash)
 
-    def create_access_token(self, user_id: str) -> str:
+    def create_access_token(self, user_id: str, role: str) -> str:
         """Function to create access token"""
-
+        
         expires = dt.datetime.now(dt.timezone.utc) + dt.timedelta(
             minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
         )
-        data = {"user_id": user_id, "exp": expires, "type": "access"}
+        data = {
+            "user_id": user_id,
+            "role": role, 
+            "exp": expires,
+            "type": "access"
+        }
         encoded_jwt = jwt.encode(data, settings.SECRET_KEY, settings.ALGORITHM)
         return encoded_jwt
 
-    def create_refresh_token(self, user_id: str) -> str:
-        """Function to create access token"""
-
+    def create_refresh_token(self, user_id: str, role: str) -> str:
+        """Function to create refresh token"""
+        
         expires = dt.datetime.now(dt.timezone.utc) + dt.timedelta(
             days=settings.JWT_REFRESH_EXPIRY
         )
-        data = {"user_id": user_id, "exp": expires, "type": "refresh"}
+        data = {
+            "user_id": user_id,
+            "role": role, 
+            "exp": expires,
+            "type": "refresh"
+        }
         encoded_jwt = jwt.encode(data, settings.SECRET_KEY, settings.ALGORITHM)
         return encoded_jwt
 

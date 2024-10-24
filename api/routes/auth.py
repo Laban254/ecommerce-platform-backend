@@ -26,20 +26,18 @@ def register(background_tasks: BackgroundTasks, response: Response, user_schema:
     user = user_service.create(db=db, schema=user_schema)
 
     # Create access and refresh tokens
-    access_token = user_service.create_access_token(user_id=user.id)
-    refresh_token = user_service.create_refresh_token(user_id=user.id)
-    cta_link = 'https://anchor-python.teams.hng.tech/about-us'
+    access_token = user_service.create_access_token(user_id=user.id, role=user.role)
+    refresh_token = user_service.create_refresh_token(user_id=user.id, role=user.role)
 
     # Send email in the background
     background_tasks.add_task(
         send_email, 
         recipient=user.email,
         template_name='welcome.html',
-        subject='Welcome to HNG Boilerplate',
+        subject='Welcome 🦰',
         context={
             'first_name': user.first_name,
-            'last_name': user.last_name,
-            'cta_link': cta_link
+            'last_name': user.last_name
         }
     )
 
@@ -81,8 +79,8 @@ def login(login_request: LoginRequest, db: Session = Depends(get_db)):
     )
 
     # Generate access and refresh tokens
-    access_token = user_service.create_access_token(user_id=user.id)
-    refresh_token = user_service.create_refresh_token(user_id=user.id)
+    access_token = user_service.create_access_token(user_id=user.id, role=user.role)
+    refresh_token = user_service.create_refresh_token(user_id=user.id, role=user.role)
 
     response = auth_response(
         status_code=200,
@@ -187,8 +185,8 @@ async def verify_signin_token(
     user = user_service.verify_login_token(db, schema=token_schema)
 
     # Generate JWT token
-    access_token = user_service.create_access_token(user_id=user.id)
-    refresh_token = user_service.create_refresh_token(user_id=user.id)
+    access_token = user_service.create_access_token(user_id=user.id, role=user.role)
+    refresh_token = user_service.create_refresh_token(user_id=user.id, role=user.role)
 
 
     response = auth_response(
