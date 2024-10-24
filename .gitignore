@@ -1,0 +1,69 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Environment variables
+.env
+.env.*
+
+# alembic migrations
+alembic/versions/
+
+# pytest
+.pytest_cache/
+
+# SQL database files
+*.sqlite3
+*.db
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Editor & IDE files
+.vscode/
+.idea/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+
+# Pipenv
+Pipfile.lock
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyright
+.pyright/
+pyrightconfig.json
+
+# Docker
+*.pid
+*.sock
+
+# Node.js
+node_modules/
+
+# Miscellaneous
+*.swp
+*.swo
+*~
