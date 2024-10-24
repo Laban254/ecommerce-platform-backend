@@ -7,13 +7,25 @@ from starlette.middleware.sessions import SessionMiddleware
 from starlette.requests import Request
 from fastapi.responses import JSONResponse
 
-
 app = FastAPI(
-    title="Auth",
-    description="Auth API",
+    title="E-Commerce Backend API",
+    description="""
+    A comprehensive API for managing an e-commerce platform. 
+    Features include product management, user authentication, 
+    order processing, and inventory tracking.
+    """,
     version="1.0.0",
+    contact={
+        "name": "E-Commerce Team",
+        "email": "labanrotich6544@gmail.com",
+    },
+    license_info={
+        "name": "MIT License",
+        "url": "https://opensource.org/licenses/MIT",
+    },
+    docs_url="/docs",
+    redoc_url="/redoc",  
 )
-
 origins = [
     "http://localhost:3000"
 ]
