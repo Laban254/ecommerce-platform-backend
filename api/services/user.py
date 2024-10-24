@@ -322,6 +322,21 @@ class UserService(Service):
         token = self.verify_access_token(access_token, credentials_exception)
         user = db.query(User).filter(User.id == token.id).first()
 
+        if not user:
+            raise credentials_exception 
+
+        return user
+    
+    def get_current_admin(
+        self, token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+    ):
+        """Get the current admin user"""
+        user = self.get_current_user(access_token=token, db=db)
+        if not user or user.role != "admin": 
+            raise HTTPException(
+                status_code=403,
+                detail="You do not have permission to access this resource",
+            )
         return user
 
     def deactivate_user(
