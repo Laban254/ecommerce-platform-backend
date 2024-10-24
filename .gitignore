@@ -12,8 +12,6 @@ venv/
 .env
 .env.*
 
-# alembic migrations
-alembic/versions/
 
 # pytest
 .pytest_cache/
