@@ -20,6 +20,9 @@ class User(BaseTableModel):
     role = Column(String, nullable=False, server_default=text("'user'"))
     is_deleted = Column(Boolean, server_default=text("false"))
     is_verified = Column(Boolean, server_default=text("false"))
+    cart_items = relationship("Cart", back_populates="user")
+    orders = relationship("Order", back_populates="user")
+
 
     token_login = relationship(
          "TokenLogin", back_populates="user", uselist=False, cascade="all, delete-orphan"
