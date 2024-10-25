@@ -8,3 +8,5 @@ class OrderResponse(BaseModel):
 
     class Config:
         orm_mode = True
+class OrderUpdate(BaseModel):
+    status: str
