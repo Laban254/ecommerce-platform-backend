@@ -7,7 +7,7 @@ from api.db.database import get_db
 from api.models.user import User
 from api.services.user import user_service
 
-checkout_t = APIRouter()
+checkout_t = APIRouter(tags=["Checkout"])
 
 
 @checkout_t.post("/checkout", response_model=OrderResponse)

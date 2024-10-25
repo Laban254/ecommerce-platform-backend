@@ -8,7 +8,7 @@ from api.schemas.cart import CartItemCreate, CartItemResponse
 from api.services.user import user_service
 from api.services.cart import view_cart, add_to_cart, remove_from_cart, clear_cart
 
-cart = APIRouter()
+cart = APIRouter(tags=["Cart"])
 
 @cart.get("/cart", response_model=list[CartItemResponse])
 async def get_cart(user: User = Depends(user_service.get_current_user), db: Session = Depends(get_db)):
