@@ -26,6 +26,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",  
 )
+
 origins = [
     "http://localhost:3000"
 ]
@@ -45,5 +46,5 @@ app.include_router(api_version_one)
 
 @app.get("/", tags=["Home"])
 async def get_root(request: Request):
-    return JSONResponse("Auth API  ")
+    return JSONResponse("E-Commerce Backend API")
 
