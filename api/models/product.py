@@ -14,6 +14,7 @@ class Product(BaseTableModel):
     price = Column(Float, nullable=False)
     is_active = Column(Boolean, default=True)
     cart_items = relationship("Cart", back_populates="product")
+    reviews = relationship("Review", back_populates="product") 
 
     def __repr__(self):
         return f"<Product(name={self.name}, price={self.price}, is_active={self.is_active})>"
