@@ -22,3 +22,13 @@ class ProductResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class ProductOut(BaseModel):
+    id: int
+    name: str
+    category: str
+    price: float
+    description: str  # Add other fields as necessary
+
+    class Config:
+        orm_mode = True
