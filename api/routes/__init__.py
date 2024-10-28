@@ -7,6 +7,7 @@ from .order import order_router
 from .search import search
 from .wishlist import wishlist
 from .coupon import coupon
+from .notifications import notifications
 
 api_version_one = APIRouter(prefix="/api/v1")
 
@@ -19,3 +20,4 @@ api_version_one.include_router(order_router )
 api_version_one.include_router(search)
 api_version_one.include_router(wishlist)
 api_version_one.include_router(coupon)
+api_version_one.include_router(notifications)
