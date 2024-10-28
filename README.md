@@ -1,9 +1,8 @@
-# eCommerce Platform Backend
+# eCommerce Platform Backend 🛒
 
-This project is built using FastAPI and provides a RESTful API for managing an online store, including product management, user authentication, cart functionality, order processing, reviews, wishlist management, admin functionalities and audit logs.
+This project is built using FastAPI and provides a RESTful API for managing an online store, including product management, user authentication, cart functionality, order processing, reviews, wishlist management, admin functionalities, and audit logs.
 
-
-## Features
+## Features 🌟
 
 - User authentication and authorization
 - Admin dashboard for managing users, products, and orders
@@ -17,7 +16,7 @@ This project is built using FastAPI and provides a RESTful API for managing an o
 - Asynchronous email notifications
 - Validation utilities for database entries
 
-## Technologies
+## Technologies 💻
 
 - **FastAPI**: A modern, fast (high-performance) web framework for building APIs with Python.
 - **SQLAlchemy**: A SQL toolkit and Object-Relational Mapping (ORM) system for Python.
@@ -25,7 +24,6 @@ This project is built using FastAPI and provides a RESTful API for managing an o
 - **Pydantic**: Data validation and settings management using Python type annotations.
 - **PostgreSQL**: A powerful, open-source object-relational database system.
 
-### TODO
+### TODO 📝
 - [ ] **Write Unit Tests**
-
 - [ ] **Implement CI/CD Pipeline**
