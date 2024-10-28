@@ -5,7 +5,7 @@ This project is built using FastAPI and provides a RESTful API for managing an o
 ## Features 🌟
 
 - User authentication and authorization
-- Admin dashboard for managing users, products, and orders
+- Admin management
 - Product management (CRUD operations)
 - Cart management
 - Order processing
